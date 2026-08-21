@@ -9,118 +9,102 @@
 <meta name="apple-mobile-web-app-title" content="筋トレ管理">
 <title>筋トレ・体重管理</title>
 <style>
-:root{--bg:#f4f7f6;--card:#fff;--ink:#17201e;--muted:#6d7875;--green:#0f766e;--green2:#dff4ef;--blue:#2563eb;--orange:#ea580c;--line:#e4e9e7;--danger:#b91c1c}
+:root{--bg:#f4f7f6;--card:#fff;--ink:#17201e;--muted:#6d7875;--green:#0f766e;--green2:#dff4ef;--blue:#2563eb;--orange:#ea580c;--line:#e4e9e7;--danger:#b91c1c;--yellow:#a16207}
 *{box-sizing:border-box}html{background:var(--bg)}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;color:var(--ink);background:var(--bg);padding-bottom:90px}
 header{position:sticky;top:0;z-index:20;background:rgba(244,247,246,.94);backdrop-filter:blur(14px);padding:calc(env(safe-area-inset-top) + 12px) 16px 10px;border-bottom:1px solid var(--line)}
 .header-row{display:flex;align-items:center;justify-content:space-between}.title{font-size:21px;font-weight:800}.sub{font-size:12px;color:var(--muted);margin-top:2px}
 main{max-width:760px;margin:auto;padding:14px 14px 20px}.tab{display:none}.tab.active{display:block}
 .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px;margin-bottom:12px;box-shadow:0 2px 10px rgba(0,0,0,.035)}
-h2{font-size:16px;margin:0 0 12px}.section-title{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+h2{font-size:16px;margin:0 0 12px}.section-title{display:flex;justify-content:space-between;align-items:center;gap:8px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .stat{background:#f7faf9;border-radius:14px;padding:12px}.stat .label{font-size:12px;color:var(--muted)}.stat .value{font-size:25px;font-weight:800;margin-top:2px}.unit{font-size:12px;font-weight:500;color:var(--muted)}
 input,select,textarea{width:100%;font:inherit;border:1px solid #d7dfdc;border-radius:12px;padding:11px;background:#fff;color:var(--ink)}textarea{min-height:76px;resize:vertical}
 button{font:inherit;border:0;border-radius:12px;padding:10px 13px;font-weight:700;cursor:pointer}.primary{background:var(--green);color:white}.secondary{background:var(--green2);color:var(--green)}.ghost{background:#f1f4f3;color:var(--ink)}.danger{background:#fee2e2;color:var(--danger)}.selected{outline:2px solid var(--green)}
-.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}.small{font-size:12px;color:var(--muted)}.mt8{margin-top:8px}.mt12{margin-top:12px}
+.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}.small{font-size:12px;color:var(--muted)}.mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}
 .progress{height:10px;background:#e9efed;border-radius:99px;overflow:hidden}.progress>div{height:100%;background:var(--green);border-radius:99px}.goal{font-size:13px;color:var(--muted);margin-top:7px}
 .exercise{border:1px solid var(--line);border-radius:15px;padding:12px;margin:8px 0}.exercise-head{display:flex;justify-content:space-between;gap:8px}.exercise-name{font-weight:800}.exercise-desc{font-size:12px;color:var(--muted);margin:5px 0 9px;line-height:1.5}.done{background:#ecfdf5;border-color:#a7f3d0}.done .exercise-name{color:var(--green)}
 .pill{display:inline-block;border-radius:99px;padding:5px 9px;font-size:11px;font-weight:800;background:#eef2ff;color:#4338ca}.pill.a{background:#fff1e9;color:var(--orange)}.pill.b{background:#eaf2ff;color:var(--blue)}
 .meal{padding:11px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.55}.meal:last-child{border-bottom:0}.meal strong{display:block;margin-bottom:4px}
 .nav{position:fixed;z-index:30;left:0;right:0;bottom:0;padding:8px max(8px,env(safe-area-inset-left)) calc(8px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);max-width:760px;margin:auto}.nav button{background:transparent;color:#65716e;font-size:11px;padding:6px 2px}.nav button.active{color:var(--green);font-weight:800}.nav .ico{font-size:20px;display:block;line-height:20px;margin-bottom:2px}
-.chart{width:100%;height:220px;background:#fbfcfc;border-radius:14px;border:1px solid var(--line);padding:5px}.chart svg{width:100%;height:100%}
+.chart{width:100%;height:250px;background:#fbfcfc;border-radius:14px;border:1px solid var(--line);padding:5px}.chart svg{width:100%;height:100%}
 .list{margin:0;padding:0;list-style:none}.list li{padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}.list li:last-child{border-bottom:0}
-.notice{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:14px;padding:11px;font-size:12px;line-height:1.6}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:50;display:none;align-items:flex-end}.modal.open{display:flex}.sheet{background:var(--bg);width:100%;max-height:88vh;border-radius:22px 22px 0 0;overflow:auto;padding:14px 14px calc(20px + env(safe-area-inset-bottom));max-width:760px;margin:auto}.sheet-head{display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--bg);padding-bottom:10px;z-index:2}.sheet h2{font-size:20px;margin:0}.detail-section{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;margin:9px 0}.detail-section h3{font-size:14px;margin:0 0 8px}.detail-section ol,.detail-section ul{margin:0 0 0 20px;padding:0;font-size:13px;line-height:1.75}
+.notice{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:14px;padding:11px;font-size:12px;line-height:1.6}.success{background:#ecfdf5;border:1px solid #a7f3d0;color:#166534;border-radius:14px;padding:11px;font-size:12px;line-height:1.6}.info{background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;border-radius:14px;padding:11px;font-size:12px;line-height:1.6}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:50;display:none;align-items:flex-end}.modal.open{display:flex}.sheet{background:var(--bg);width:100%;max-height:90vh;border-radius:22px 22px 0 0;overflow:auto;padding:14px 14px calc(20px + env(safe-area-inset-bottom));max-width:760px;margin:auto}.sheet-head{display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--bg);padding-bottom:10px;z-index:2}.sheet h2{font-size:20px;margin:0}.detail-section{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;margin:9px 0}.detail-section h3{font-size:14px;margin:0 0 8px}.detail-section ol,.detail-section ul{margin:0 0 0 20px;padding:0;font-size:13px;line-height:1.75}
 .timer{font-size:64px;font-weight:800;text-align:center;letter-spacing:2px;padding:10px 0}.timer-state{text-align:center;color:var(--muted);font-size:13px}.timer-presets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.timer-presets button{font-size:13px}.timer-ring{width:170px;height:170px;border-radius:50%;border:10px solid #dff4ef;margin:8px auto;display:flex;align-items:center;justify-content:center;flex-direction:column}
-.history-type{font-weight:800}.date-head{display:flex;justify-content:space-between;align-items:center}.empty{padding:18px 0;text-align:center;color:var(--muted);font-size:13px}
-footer{font-size:11px;color:var(--muted);text-align:center;padding:10px}
+.alarm-modal{position:fixed;inset:0;background:rgba(15,118,110,.88);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}.alarm-modal.open{display:flex}.alarm-sheet{width:min(520px,100%);background:#fff;border-radius:24px;padding:28px 20px calc(24px + env(safe-area-inset-bottom));text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.25)}.alarm-icon{font-size:58px;line-height:1;margin-bottom:10px}.alarm-title{font-size:28px;font-weight:900;margin:0 0 8px}.alarm-text{color:var(--muted);font-size:14px;margin-bottom:20px}.alarm-stop{width:100%;font-size:20px;padding:15px;background:var(--danger);color:#fff}.alarm-stop:active{transform:scale(.98)}
+.history-type{font-weight:800}.date-head{display:flex;justify-content:space-between;align-items:center}.empty{padding:18px 0;text-align:center;color:var(--muted);font-size:13px}.mini{font-size:11px;color:var(--muted)}
+.food-row{display:grid;grid-template-columns:1fr 82px 54px;gap:7px;align-items:center;margin:7px 0}.food-row input{padding:9px}.food-name{font-size:13px}.protein-total{font-size:28px;font-weight:800}.tag{display:inline-block;padding:4px 8px;border-radius:99px;background:#f1f5f9;font-size:11px;color:#475569;margin:2px}
+.metric-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.metric{background:#f7faf9;border-radius:14px;padding:10px}.metric .v{font-size:18px;font-weight:800}.metric .l{font-size:11px;color:var(--muted)}
+.workout-inputs{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}.workout-inputs label{font-size:11px;color:var(--muted)}
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.check-btn{background:#fff;border:1px solid var(--line);text-align:left;font-weight:600;padding:9px}.check-btn.on{background:#ecfdf5;border-color:#a7f3d0;color:#166534}
 @media(min-width:700px){body{padding-bottom:20px}.nav{position:static;border:1px solid var(--line);border-radius:16px;margin:10px auto 0}.nav button{font-size:13px}.nav .ico{display:inline;margin-right:5px}}
 </style>
 </head>
 <body>
-<header><div class="header-row"><div><div class="title">筋トレ・体重管理</div><div class="sub">51.4kg → 54〜55kg / タンパク質80〜100g目安</div></div><button class="ghost" onclick="showTab('settings')">⚙️</button></div></header>
-
+<header><div class="header-row"><div><div class="title">筋トレ・体重管理</div><div class="sub">51.4kg → 54〜55kg / ゆっくり増量</div></div><button class="ghost" onclick="showTab('settings')">⚙️</button></div></header>
 <main>
 <section id="home" class="tab active">
   <div class="card">
     <div class="section-title"><h2>今日の記録</h2><span id="todayLabel" class="small"></span></div>
-    <div class="grid2">
+    <div><label class="small">記録日（過去の日付も入力できます）</label><input id="dateInput" type="date" onchange="loadSelectedDate()" style="margin-top:4px"></div>
+    <div class="grid2 mt8">
       <div><label class="small">体重 (kg)</label><input id="weightInput" type="number" step="0.1" inputmode="decimal" placeholder="例 51.4"></div>
-      <div><label class="small">タンパク質 (g)</label><input id="proteinInput" type="number" step="1" inputmode="numeric" placeholder="例 90"></div>
+      <div><label class="small">タンパク質</label><button class="secondary" style="width:100%;margin-top:4px" onclick="openProtein()" id="proteinButton">食材から計算</button><div id="proteinPreview" class="mini mt8">まだ記録なし</div></div>
     </div>
-    <div class="row mt8"><button class="primary" onclick="saveDaily()">今日を保存</button><button class="secondary" onclick="showTab('workout')">筋トレする</button></div>
+    <div class="row mt8"><button class="primary" onclick="saveDaily()">この日を保存</button><button class="secondary" onclick="showTab('workout')">筋トレする</button></div>
   </div>
+
   <div class="card">
-    <h2>体重目標</h2>
-    <div class="grid2"><div class="stat"><div class="label">最新体重</div><div class="value" id="currentWeight">--<span class="unit"> kg</span></div></div><div class="stat"><div class="label">目標</div><div class="value">54〜55<span class="unit"> kg</span></div></div></div>
-    <div class="mt12 progress"><div id="weightProgress" style="width:0%"></div></div><div id="weightMessage" class="goal">記録すると進捗が表示されます。</div>
+    <h2>現在の状態</h2>
+    <div class="grid2">
+      <div class="stat"><div class="label">最新体重</div><div class="value" id="currentWeight">--<span class="unit"> kg</span></div></div>
+      <div class="stat"><div class="label">7日平均</div><div class="value" id="avgWeight">--<span class="unit"> kg</span></div></div>
+    </div>
+    <div class="metric-grid mt8"><div class="metric"><div class="l">前回との差</div><div class="v" id="weightDiff">--</div></div><div class="metric"><div class="l">増加ペース</div><div class="v" id="weightPace">--</div></div></div>
+    <div class="mt12 progress"><div id="weightProgress" style="width:0%"></div></div>
+    <div id="weightMessage" class="goal">記録すると進捗が表示されます。</div>
   </div>
-  <div class="card"><h2>今週の筋トレ</h2><div id="weekStatus" class="small"></div><div class="mt8 progress"><div id="workoutProgress" style="width:0%"></div></div></div>
-  <div class="card">
-    <h2>今日の食事ルール</h2>
-    <div class="meal"><strong>🌅 朝</strong>ミューズリー＋プレーンヨーグルト ＋ バナナ / 牛乳 / プロテイン / 卵などから1品</div>
-    <div class="meal"><strong>☀️ 昼</strong>カップ麺なら「卵 or サラダチキン」などタンパク質を1品追加</div>
-    <div class="meal"><strong>🌙 夜</strong>米＋味噌汁＋主菜＋副菜を基本にする</div>
-    <div class="meal"><strong>🍌 間食</strong>体重が2〜3週間増えない時だけ少量追加</div>
+
+  <div class="card"><div class="section-title"><h2>今週の状況</h2><span id="weekStatus" class="small"></span></div><div class="mt8 progress"><div id="workoutProgress" style="width:0%"></div></div><div id="todayWorkoutStatus" class="goal"></div><button id="homeWorkoutButton" class="primary mt8" style="width:100%" onclick="showTab('workout')">今日の筋トレを開始</button></div>
+
+  <div class="card"><h2>今日の食事ルール</h2>
+    <div class="meal"><strong>🌅 朝</strong>ミューズリー＋プレーンヨーグルト＋卵・牛乳・バナナなどから追加。タンパク質は食材からざっくり確認。</div>
+    <div class="meal"><strong>☀️ 昼</strong>カップ麺なら卵・サラダチキン・納豆などを1品追加。</div>
+    <div class="meal"><strong>🌙 夜</strong>米＋味噌汁＋主菜＋副菜を基本にする。</div>
+    <div class="meal"><strong>🍌 間食</strong>体重が2〜3週間増えない時だけ少量追加。</div>
   </div>
 </section>
 
 <section id="workout" class="tab">
   <div class="card">
-    <div class="section-title"><h2>筋トレ</h2><button class="secondary" onclick="openTimer()">⏱ 1分タイマー</button></div>
+    <div class="section-title"><h2>筋トレ</h2><button class="secondary" onclick="openTimer()">⏱ タイマー</button></div>
+    <div id="workoutRecommendation" class="info mt8"></div>
     <div class="row mt8"><button id="btnA" class="secondary" onclick="setWorkout('A')">Aメニュー</button><button id="btnB" class="secondary" onclick="setWorkout('B')">Bメニュー</button></div>
     <div id="workoutMeta" class="small mt8"></div>
   </div>
   <div id="exerciseList"></div>
-  <div class="card"><div class="small">進め方：指定回数の上限が余裕になったら、回数・足の高さ・リュックの重さなどを少しずつ上げる。</div><div class="row mt8"><button class="primary" onclick="completeWorkout()">この日の筋トレを記録</button><button class="ghost" onclick="resetWorkout()">リセット</button></div></div>
+  <div class="card"><div class="small">各種目は「今回の実績」を任意で入力できます。前回記録があれば次回に表示されます。指定上限が余裕になったら、回数・足の高さ・リュック重量などを少しずつ上げます。</div><div class="row mt8"><button class="primary" onclick="completeWorkout()">この日の筋トレを記録</button><button class="ghost" onclick="resetWorkout()">リセット</button></div></div>
 </section>
 
 <section id="history" class="tab">
-  <div class="card">
-    <div class="section-title"><h2>体重の推移</h2><select id="rangeSelect" onchange="renderHistory()" style="width:auto"><option value="14">14日</option><option value="30" selected>30日</option><option value="90">90日</option><option value="all">全期間</option></select></div>
-    <div class="chart" id="chart"></div><div id="historySummary" class="small mt8"></div>
-  </div>
-  <div class="card"><h2>体重・食事の履歴</h2><ul id="weightHistoryList" class="list"></ul></div>
+  <div class="card"><div class="section-title"><h2>体重の推移</h2><select id="rangeSelect" onchange="renderHistory()" style="width:auto"><option value="14">14日</option><option value="30" selected>30日</option><option value="90">90日</option><option value="all">全期間</option></select></div><div class="chart" id="chart"></div><div id="historySummary" class="small mt8"></div></div>
+  <div class="card"><h2>体重・タンパク質履歴</h2><ul id="weightHistoryList" class="list"></ul></div>
   <div class="card"><h2>筋トレ履歴</h2><ul id="workoutHistoryList" class="list"></ul></div>
 </section>
 
 <section id="settings" class="tab">
-  <div class="card"><h2>食事・体調メモ</h2><div class="notice">IBS・下痢が悪化した日は、増量より体調を優先。食事量を急に増やさない。</div><textarea id="noteInput" class="mt8" placeholder="今日の食事・お腹の調子など"></textarea><button class="primary mt8" onclick="saveNote()">メモを保存</button></div>
-  <div class="card"><h2>このアプリの方針</h2><ul class="list"><li>週3回：A/Bを交互に30〜45分</li><li>タンパク質：80〜100g/日を目安</li><li>体重：51.4kg → 54〜55kgをゆっくり目指す</li><li>LDL 152のため、揚げ物・脂身・ジャンクフードの大量摂取は避ける</li><li>データはこのiPhoneのブラウザ内に保存し、外部送信しない</li></ul></div>
-  <div class="card"><h2>データ管理</h2><div class="row"><button class="secondary" onclick="exportData()">バックアップ</button><button class="ghost" onclick="document.getElementById('importFile').click()">復元</button></div><input id="importFile" type="file" accept="application/json" style="display:none" onchange="importData(event)"><button class="danger mt8" onclick="clearData()">全データ削除</button></div>
-  <footer>医療アプリではありません。イリボー等の服用方法は自己判断で変更しないでください。</footer>
+  <div class="card"><h2>食事・体調メモ</h2><div class="notice">体調が悪い日は増量より体調を優先。食事量を急に増やさない。</div><div class="check-grid mt8"><button class="check-btn" id="symptomDiarrhea" onclick="toggleSymptom('diarrhea')">☐ 下痢・お腹の不調</button><button class="check-btn" id="symptomAppetite" onclick="toggleSymptom('appetite')">☐ 食欲低下</button><button class="check-btn" id="symptomHeartburn" onclick="toggleSymptom('heartburn')">☐ 胸焼け</button><button class="check-btn" id="symptomFatigue" onclick="toggleSymptom('fatigue')">☐ 疲労感</button></div><textarea id="noteInput" class="mt8" placeholder="今日の食事・お腹の調子・気づいたことなど"></textarea><button class="primary mt8" onclick="saveNote()">今日のメモを保存</button></div>
+  <div class="card"><h2>このアプリの方針</h2><ul class="list"><li>週3回：A/Bを交互に30〜45分</li><li>タンパク質：食材から概算し、80〜100g/日を目安</li><li>体重：51.4kg → 54〜55kgをゆっくり目指す</li><li>体重は1日単位ではなく7日平均・増加ペースも確認</li><li>データはこのiPhoneのブラウザ内に保存し、外部送信しない</li></ul></div>
+  <div class="card"><h2>データ管理</h2><div class="row"><button class="secondary" onclick="exportData(false)">バックアップ</button><button class="secondary" onclick="exportData(true)">共有</button><button class="ghost" onclick="document.getElementById('importFile').click()">復元</button></div><input id="importFile" type="file" accept="application/json" style="display:none" onchange="importData(event)"><div class="small mt8">バックアップはiPhoneの「ファイル」などに保存しておくと、Safariのデータ消失時にも復元できます。</div><button class="danger mt8" onclick="clearData()">全データ削除</button></div>
+  <footer>医療アプリではありません。服用方法などは自己判断で変更しないでください。</footer>
 </section>
 </main>
+<nav class="nav"><button data-tab="home" onclick="showTab('home')"><span class="ico">🏠</span>ホーム</button><button data-tab="workout" onclick="showTab('workout')"><span class="ico">🏋️</span>筋トレ</button><button data-tab="history" onclick="showTab('history')"><span class="ico">📈</span>記録</button><button data-tab="settings" onclick="showTab('settings')"><span class="ico">⚙️</span>設定</button></nav>
 
-<nav class="nav">
-<button data-tab="home" onclick="showTab('home')"><span class="ico">🏠</span>ホーム</button>
-<button data-tab="workout" onclick="showTab('workout')"><span class="ico">🏋️</span>筋トレ</button>
-<button data-tab="history" onclick="showTab('history')"><span class="ico">📈</span>記録</button>
-<button data-tab="settings" onclick="showTab('settings')"><span class="ico">⚙️</span>設定</button>
-</nav>
-
-<div id="detailModal" class="modal" onclick="if(event.target===this)closeDetail()">
-  <div class="sheet">
-    <div class="sheet-head"><h2 id="detailTitle">種目詳細</h2><button class="ghost" onclick="closeDetail()">閉じる</button></div>
-    <div id="detailBody"></div>
-  </div>
-</div>
-
-<div id="timerModal" class="modal" onclick="if(event.target===this)closeTimer()">
-  <div class="sheet">
-    <div class="sheet-head"><h2>インターバルタイマー</h2><button class="ghost" onclick="closeTimer()">閉じる</button></div>
-    <div class="timer-ring"><div class="timer" id="timerDisplay">01:00</div><div class="timer-state" id="timerState">準備OK</div></div>
-    <div class="timer-presets">
-      <button class="secondary" onclick="setTimer(30)">30秒</button>
-      <button class="secondary" onclick="setTimer(60)">1分</button>
-      <button class="secondary" onclick="setTimer(90)">90秒</button>
-    </div>
-    <div class="row mt12"><button class="primary" onclick="toggleTimer()" id="timerStartBtn">スタート</button><button class="ghost" onclick="resetTimer()">リセット</button></div>
-    <div class="small mt12">セット間の休憩用。iPhoneを消音にしていても、終了時に振動する場合があります。</div>
-  </div>
-</div>
-
+<div id="detailModal" class="modal" onclick="if(event.target===this)closeDetail()"><div class="sheet"><div class="sheet-head"><h2 id="detailTitle">種目詳細</h2><button class="ghost" onclick="closeDetail()">閉じる</button></div><div id="detailBody"></div></div></div>
+<div id="timerModal" class="modal" onclick="if(event.target===this)closeTimer()"><div class="sheet"><div class="sheet-head"><h2>インターバルタイマー</h2><button class="ghost" onclick="closeTimer()">閉じる</button></div><div class="timer-ring"><div class="timer" id="timerDisplay">01:00</div><div class="timer-state" id="timerState">準備OK</div></div><div class="timer-presets"><button class="secondary" onclick="setTimer(30)">30秒</button><button class="secondary" onclick="setTimer(60)">1分</button><button class="secondary" onclick="setTimer(90)">90秒</button></div><div class="row mt12"><button class="primary" onclick="toggleTimer()" id="timerStartBtn">スタート</button><button class="ghost" onclick="resetTimer()">リセット</button></div><div class="small mt12">セット間の休憩用。0秒になると画面上にアラームを表示し、「停止」を押すまで音が繰り返し鳴ります。</div></div></div><div id="alarmModal" class="alarm-modal" role="dialog" aria-modal="true" aria-labelledby="alarmTitle"><div class="alarm-sheet"><div class="alarm-icon">⏰</div><h2 id="alarmTitle" class="alarm-title">休憩終了！</h2><div class="alarm-text">次のセットを開始してください。<br>「停止」を押すまでアラームが鳴り続けます。</div><button class="alarm-stop" onclick="stopAlarm()">停止</button></div></div>
+<div id="proteinModal" class="modal" onclick="if(event.target===this)closeProtein()"><div class="sheet"><div class="sheet-head"><h2>タンパク質を食材から概算</h2><button class="ghost" onclick="closeProtein()">閉じる</button></div><div class="info">表示値は一般的な食品の概算です。商品や量で変わるので、厳密な栄養計算ではなく「だいたい80〜100gに届いているか」の確認用です。</div><div id="foodList" class="mt8"></div><div class="detail-section"><h3>その他</h3><div class="row"><input id="otherProtein" type="number" step="1" inputmode="numeric" placeholder="追加分(g)"><span class="small">g</span></div></div><div class="card"><div class="small">今日の概算</div><div class="protein-total"><span id="proteinTotal">0</span><span class="unit"> g</span></div><div id="proteinTargetMessage" class="goal"></div></div><button class="primary" style="width:100%" onclick="saveProteinEstimate()">この日のタンパク質として保存</button></div></div>
 <script>
-const KEY='muscleWeightApp_v1'; // 既存版と同じキー。アップデート後も記録を引き継ぐ
+const KEY='muscleWeightApp_v1';
 let state;
 try{state=JSON.parse(localStorage.getItem(KEY)||'null')||{daily:{},workouts:[],notes:{}}}catch(e){state={daily:{},workouts:[],notes:{}}}
 state.daily=state.daily||{};state.workouts=state.workouts||[];state.notes=state.notes||{};
@@ -137,126 +121,72 @@ const exercises={
  A:[['腕立て伏せ','8〜15回 × 3セット'],['パイクプッシュアップ','6〜12回 × 3セット'],['ブルガリアンスクワット','左右8〜15回 × 3セット'],['ヒップリフト','15〜20回 × 3セット'],['プランク','30〜60秒 × 2セット']],
  B:[['リュックローイング','10〜15回 × 3セット'],['腕立て伏せ','8〜15回 × 3セット'],['ブルガリアンスクワット','左右8〜15回 × 3セット'],['リュックカール','10〜15回 × 3セット'],['プランク','30〜60秒 × 2セット']]
 };
-let selectedWorkout='A',checks={};
-let timerSeconds=60,timerRemaining=60,timerId=null,timerRunning=false;
 
+const foodPresets=[
+ ['卵','1個',6.2],['納豆','1パック',8.0],['鶏むね肉','100g',23.0],['サラダチキン','1個',25.0],['牛乳','200ml',6.6],['プレーンヨーグルト','100g',3.6],['豆腐','150g',10.0],['ツナ缶','1缶',13.0],['ご飯','150g',3.8],['プロテイン','1回',20.0]
+];
+let selectedWorkout='A',checks={},workoutStats={},selectedDate=today();
+let timerSeconds=60,timerRemaining=60,timerId=null,timerRunning=false,timerEndAt=null,timerAudioCtx=null,alarmInterval=null,alarmActive=false;
+let proteinDraft={};let otherProtein=0;let symptomDraft={};
 function persist(){localStorage.setItem(KEY,JSON.stringify(state))}
 function today(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
 function fmtDate(d){return d.replaceAll('-','/')}
-function showTab(id){
- document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
- document.getElementById(id).classList.add('active');
- document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.tab===id));
- if(id==='history')renderHistory();if(id==='home')renderHome();if(id==='workout')renderWorkout();if(id==='settings')loadNote();
- window.scrollTo({top:0,behavior:'smooth'});
-}
-function saveDaily(){
- const d=today(),w=parseFloat(document.getElementById('weightInput').value),p=parseFloat(document.getElementById('proteinInput').value);
- if(Number.isNaN(w)&&Number.isNaN(p)){alert('体重またはタンパク質を入力してください。');return}
- state.daily[d]={...(state.daily[d]||{}),...(Number.isNaN(w)?{}:{weight:w}),...(Number.isNaN(p)?{}:{protein:p})};
- persist();renderHome();alert('今日の記録を保存しました。');
-}
-function renderHome(){
- document.getElementById('todayLabel').textContent=fmtDate(today());
- const d=state.daily[today()]||{};
- document.getElementById('weightInput').value=d.weight??'';document.getElementById('proteinInput').value=d.protein??'';
- const entries=Object.entries(state.daily).filter(([k,v])=>Number.isFinite(v.weight)).sort((a,b)=>a[0].localeCompare(b[0]));
- const cur=entries.length?entries.at(-1)[1].weight:51.4;
- document.getElementById('currentWeight').innerHTML=Number(cur).toFixed(1)+'<span class="unit"> kg</span>';
- const pct=Math.max(0,Math.min(100,(cur-51.4)/(54-51.4)*100));
- document.getElementById('weightProgress').style.width=pct+'%';
- document.getElementById('weightMessage').textContent=cur<54?`第1目標54kgまであと ${(54-cur).toFixed(1)}kg。月0.5〜1kg程度を目安に。`:'54kg到達。55kgまで体調を見ながらゆっくり。';
- const wk=weekWorkoutCount();document.getElementById('weekStatus').textContent=`今週 ${wk}/3回`;document.getElementById('workoutProgress').style.width=Math.min(100,wk/3*100)+'%';
-}
-function weekWorkoutCount(){
- const now=new Date(),day=now.getDay(),diff=day===0?-6:1-day,mon=new Date(now);mon.setDate(now.getDate()+diff);mon.setHours(0,0,0,0);
- return state.workouts.filter(x=>new Date(x.date+'T00:00:00')>=mon).length;
-}
-function setWorkout(type){selectedWorkout=type;checks={};renderWorkout()}
-function renderWorkout(){
- document.getElementById('btnA').classList.toggle('selected',selectedWorkout==='A');document.getElementById('btnB').classList.toggle('selected',selectedWorkout==='B');
- document.getElementById('workoutMeta').innerHTML=`<span class="pill ${selectedWorkout.toLowerCase()}">${selectedWorkout}メニュー</span>　週3回・1回30〜45分`;
- document.getElementById('exerciseList').innerHTML=exercises[selectedWorkout].map((e,i)=>{
-   const d=details[e[0]];
-   return `<div class="card exercise ${checks[i]?'done':''}">
-    <div class="exercise-head"><span class="exercise-name">${i+1}. ${e[0]}</span><span class="small">${e[1]}</span></div>
-    <div class="exercise-desc">${d.purpose}</div>
-    <div class="row"><button class="${checks[i]?'secondary':'ghost'}" onclick="toggleCheck(${i})">${checks[i]?'✓ 完了':'完了にする'}</button><button class="ghost" onclick="openDetail('${e[0]}')">やり方・ポイント</button></div>
-   </div>`;
- }).join('');
-}
-function toggleCheck(i){checks[i]=!checks[i];renderWorkout()}
-function completeWorkout(){
- const complete=Object.keys(checks).filter(k=>checks[k]).length;
- if(complete<exercises[selectedWorkout].length&&!confirm(`${exercises[selectedWorkout].length-complete}種目が未完了です。このまま記録しますか？`))return;
- state.workouts.push({date:today(),type:selectedWorkout,completed:complete,total:exercises[selectedWorkout].length});
- persist();renderHome();alert(`${selectedWorkout}メニューを記録しました。`);checks={};renderWorkout();
-}
-function resetWorkout(){checks={};renderWorkout()}
-
-function openDetail(name){
- const d=details[name];if(!d)return;
- document.getElementById('detailTitle').textContent=name;
- document.getElementById('detailBody').innerHTML=`
- <div class="detail-section"><h3>狙う部位</h3><div>${d.purpose}</div></div>
- <div class="detail-section"><h3>やり方・手順</h3><ol>${d.steps.map(x=>`<li>${x}</li>`).join('')}</ol></div>
- <div class="detail-section"><h3>意識するポイント</h3><ul>${d.points.map(x=>`<li>${x}</li>`).join('')}</ul></div>
- <div class="detail-section"><h3>きつい場合</h3><div>${d.easy}</div></div>
- <div class="detail-section"><h3>慣れてきたら</h3><div>${d.progress}</div></div>`;
- document.getElementById('detailModal').classList.add('open');
-}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function showTab(id){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.tab===id));if(id==='history')renderHistory();if(id==='home')renderHome();if(id==='workout')renderWorkout();if(id==='settings')loadNote();window.scrollTo({top:0,behavior:'smooth'})}
+function getWeightEntries(){return Object.entries(state.daily).filter(([d,x])=>Number.isFinite(Number(x.weight))).sort((a,b)=>a[0].localeCompare(b[0]))}
+function getLatestWeight(){const e=getWeightEntries();return e.length?Number(e.at(-1)[1].weight):51.4}
+function getAvgWeight(n=7){const e=getWeightEntries().slice(-n);return e.length?e.reduce((s,x)=>s+Number(x[1].weight),0)/e.length:null}
+function getWeightPace(){const e=getWeightEntries();if(e.length<2)return null;const first=e[0],last=e.at(-1);const days=(new Date(last[0]+'T00:00:00')-new Date(first[0]+'T00:00:00'))/86400000;if(days<1)return null;return (Number(last[1].weight)-Number(first[1].weight))/days*7}
+function getRecentDiff(){const e=getWeightEntries();if(e.length<2)return null;return Number(e.at(-1)[1].weight)-Number(e.at(-2)[1].weight)}
+function saveDaily(){const d=document.getElementById('dateInput').value||today(),w=parseFloat(document.getElementById('weightInput').value);if(d>today()){alert('未来の日付は記録できません。');return}if(Number.isNaN(w)&&!state.daily[d]?.protein){alert('体重を入力するか、タンパク質を食材から記録してください。');return}state.daily[d]={...(state.daily[d]||{}),...(Number.isNaN(w)?{}:{weight:w})};selectedDate=d;persist();renderHome();renderHistory();alert(`${fmtDate(d)}の記録を保存しました。`)}
+function loadSelectedDate(){selectedDate=document.getElementById('dateInput').value||today();const d=state.daily[selectedDate]||{};document.getElementById('weightInput').value=d.weight??'';updateProteinPreview(d);document.getElementById('todayLabel').textContent=fmtDate(selectedDate)}
+function renderHome(){const di=document.getElementById('dateInput');di.max=today();if(!selectedDate||selectedDate>today())selectedDate=today();di.value=selectedDate;const d=state.daily[selectedDate]||{};document.getElementById('todayLabel').textContent=fmtDate(selectedDate);document.getElementById('weightInput').value=d.weight??'';updateProteinPreview(d);const cur=getLatestWeight();document.getElementById('currentWeight').innerHTML=cur.toFixed(1)+'<span class="unit"> kg</span>';const avg=getAvgWeight();document.getElementById('avgWeight').innerHTML=avg===null?'--<span class="unit"> kg</span>':avg.toFixed(1)+'<span class="unit"> kg</span>';const diff=getRecentDiff();document.getElementById('weightDiff').textContent=diff===null?'--':`${diff>=0?'+':''}${diff.toFixed(1)}kg`;const pace=getWeightPace();document.getElementById('weightPace').textContent=pace===null?'--':`${pace>=0?'+':''}${pace.toFixed(2)}kg/週`;const pct=Math.max(0,Math.min(100,(cur-51.4)/(55-51.4)*100));document.getElementById('weightProgress').style.width=pct+'%';document.getElementById('weightMessage').textContent=trendMessage(cur,pace);const wk=weekWorkoutCount();document.getElementById('weekStatus').textContent=`今週 ${wk}/3回`;document.getElementById('workoutProgress').style.width=Math.min(100,wk/3*100)+'%';const todayWorkout=state.workouts.find(x=>x.date===today());const rec=getRecommendedWorkout();document.getElementById('todayWorkoutStatus').textContent=todayWorkout?`今日は${todayWorkout.type}メニューを${todayWorkout.completed}/${todayWorkout.total}種目記録済みです。`: `おすすめ：${rec}メニュー。前回の筋トレからの間隔を見て交互に進めます。`;document.getElementById('homeWorkoutButton').textContent=todayWorkout?'今日の筋トレを確認':'今日の筋トレを開始'}
+function trendMessage(cur,pace){if(cur>=55)return '55kg到達。ここからは体調と見た目を見ながら維持・調整。';if(pace===null)return `55kgまであと ${(55-cur).toFixed(1)}kg。まずは記録を続けます。`;if(pace<0)return `減少傾向です。55kgまであと ${(55-cur).toFixed(1)}kg。`;if(pace<0.05)return `ほぼ横ばいです。食事量を少しだけ見直す候補。`;if(pace<=0.3)return `増加ペースはおおむね穏やかです。55kgまであと ${(55-cur).toFixed(1)}kg。`;return '増加ペースがやや速めです。胃腸の状態を見ながら調整。'}
+function weekWorkoutCount(){const now=new Date(),day=now.getDay(),diff=day===0?-6:1-day,mon=new Date(now);mon.setDate(now.getDate()+diff);mon.setHours(0,0,0,0);return state.workouts.filter(x=>new Date(x.date+'T00:00:00')>=mon).length}
+function getRecommendedWorkout(){const todayRec=state.workouts.find(x=>x.date===today());if(todayRec)return todayRec.type;const recent=[...state.workouts].sort((a,b)=>b.date.localeCompare(a.date));return recent.length&&recent[0].type==='A'?'B':'A'}
+function getPreviousWorkout(type){return [...state.workouts].filter(x=>x.type===type).sort((a,b)=>b.date.localeCompare(a.date))[0]||null}
+function setWorkout(type){selectedWorkout=type;checks={};workoutStats={};renderWorkout()}
+function renderWorkout(){const rec=getRecommendedWorkout();document.getElementById('workoutRecommendation').innerHTML=state.workouts.some(x=>x.date===today())?`今日はすでに筋トレ記録があります。必要なら内容を確認してください。`:`今日のおすすめは <b>${rec}メニュー</b>。`;document.getElementById('btnA').classList.toggle('selected',selectedWorkout==='A');document.getElementById('btnB').classList.toggle('selected',selectedWorkout==='B');document.getElementById('workoutMeta').innerHTML=`<span class="pill ${selectedWorkout.toLowerCase()}">${selectedWorkout}メニュー</span>　週3回・1回30〜45分`;const prev=getPreviousWorkout(selectedWorkout);document.getElementById('exerciseList').innerHTML=exercises[selectedWorkout].map((e,i)=>{const d=details[e[0]],ps=prev?.stats?.[e[0]];return `<div class="card exercise ${checks[i]?'done':''}"><div class="exercise-head"><span class="exercise-name">${i+1}. ${e[0]}</span><span class="small">${e[1]}</span></div><div class="exercise-desc">${d.purpose}</div>${ps?`<div class="success">前回（${fmtDate(prev.date)}）：${esc(ps)} </div>`:'<div class="mini">前回の実績なし</div>'}<div class="workout-inputs"><div><label>今回の実績（例：12,12,10）</label><input id="stat-${i}" value="${esc(workoutStats[i]||'')}" placeholder="任意"></div><div><label>負荷（kg・任意）</label><input id="load-${i}" type="number" step="0.5" inputmode="decimal" value="${workoutStats[i+'load']||''}" placeholder="リュック等"></div></div><div class="row mt8"><button class="${checks[i]?'secondary':'ghost'}" onclick="toggleCheck(${i})">${checks[i]?'✓ 完了':'完了にする'}</button><button class="ghost" onclick="openDetail('${e[0]}')">やり方・ポイント</button></div></div>`}).join('')}
+function toggleCheck(i){workoutStats[i]=document.getElementById('stat-'+i)?.value||workoutStats[i]||'';workoutStats[i+'load']=document.getElementById('load-'+i)?.value||workoutStats[i+'load']||'';checks[i]=!checks[i];renderWorkout()}
+function captureWorkoutInputs(){exercises[selectedWorkout].forEach((e,i)=>{const a=document.getElementById('stat-'+i),b=document.getElementById('load-'+i);if(a)workoutStats[i]=a.value;if(b)workoutStats[i+'load']=b.value})}
+function completeWorkout(){captureWorkoutInputs();const complete=Object.keys(checks).filter(k=>checks[k]).length;if(complete<exercises[selectedWorkout].length&&!confirm(`${exercises[selectedWorkout].length-complete}種目が未完了です。このまま記録しますか？`))return;const stats={};exercises[selectedWorkout].forEach((e,i)=>{const s=workoutStats[i]||'';const load=workoutStats[i+'load']?` / ${workoutStats[i+'load']}kg`:'';if(s||load)stats[e[0]]=(s||'実績記録なし')+load});const idx=state.workouts.findIndex(x=>x.date===today()&&x.type===selectedWorkout);const rec={date:today(),type:selectedWorkout,completed:complete,total:exercises[selectedWorkout].length,stats};if(idx>=0)state.workouts[idx]=rec;else state.workouts.push(rec);persist();renderHome();renderHistory();alert(`${selectedWorkout}メニューを記録しました。`);checks={};workoutStats={};renderWorkout()}
+function resetWorkout(){checks={};workoutStats={};renderWorkout()}
+function openDetail(name){const d=details[name];if(!d)return;document.getElementById('detailTitle').textContent=name;document.getElementById('detailBody').innerHTML=`<div class="detail-section"><h3>狙う部位</h3><div>${d.purpose}</div></div><div class="detail-section"><h3>やり方・手順</h3><ol>${d.steps.map(x=>`<li>${x}</li>`).join('')}</ol></div><div class="detail-section"><h3>意識するポイント</h3><ul>${d.points.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="detail-section"><h3>きつい場合</h3><div>${d.easy}</div></div><div class="detail-section"><h3>慣れてきたら</h3><div>${d.progress}</div></div>`;document.getElementById('detailModal').classList.add('open')}
 function closeDetail(){document.getElementById('detailModal').classList.remove('open')}
-
-function openTimer(){document.getElementById('timerModal').classList.add('open');updateTimerDisplay()}
+function openTimer(){stopAlarm();document.getElementById('timerModal').classList.add('open');updateTimerDisplay()}
 function closeTimer(){stopTimer();document.getElementById('timerModal').classList.remove('open')}
-function setTimer(sec){stopTimer();timerSeconds=sec;timerRemaining=sec;updateTimerDisplay()}
-function updateTimerDisplay(){const m=Math.floor(timerRemaining/60),s=timerRemaining%60;document.getElementById('timerDisplay').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');document.getElementById('timerState').textContent=timerRunning?'休憩中':'準備OK'}
-function toggleTimer(){
- if(timerRunning){stopTimer();return}
- timerRunning=true;document.getElementById('timerStartBtn').textContent='一時停止';updateTimerDisplay();
- timerId=setInterval(()=>{timerRemaining--;updateTimerDisplay();if(timerRemaining<=0){finishTimer()}},1000)
-}
-function stopTimer(){if(timerId)clearInterval(timerId);timerId=null;timerRunning=false;document.getElementById('timerStartBtn').textContent='スタート';updateTimerDisplay()}
-function resetTimer(){stopTimer();timerRemaining=timerSeconds;updateTimerDisplay()}
-function finishTimer(){
- if(timerId)clearInterval(timerId);timerId=null;timerRunning=false;timerRemaining=0;document.getElementById('timerStartBtn').textContent='もう一度スタート';document.getElementById('timerState').textContent='休憩終了！';
- try{if(navigator.vibrate)navigator.vibrate([200,100,200])}catch(e){}
- try{const C=window.AudioContext||window.webkitAudioContext;if(C){const c=new C(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=880;g.gain.value=.08;o.start();o.stop(c.currentTime+.25)}}catch(e){}
-}
-function renderHistory(){
- const entries=Object.entries(state.daily).filter(([d,x])=>Number.isFinite(x.weight)).sort((a,b)=>a[0].localeCompare(b[0]));
- const range=document.getElementById('rangeSelect').value;
- const vals=range==='all'?entries:entries.slice(-Number(range));
- drawChart(vals);
- if(entries.length){
-   const first=entries[0],last=entries.at(-1),diff=last[1].weight-first[1].weight;
-   document.getElementById('historySummary').textContent=`最新 ${last[1].weight.toFixed(1)}kg（${fmtDate(last[0])}） / 初回から ${diff>=0?'+':''}${diff.toFixed(1)}kg`;
- }else document.getElementById('historySummary').textContent='まだ体重記録がありません。';
- const wlist=[...entries].reverse();
- document.getElementById('weightHistoryList').innerHTML=wlist.length?wlist.map(([d,x])=>`<li><b>${fmtDate(d)}</b><br>体重 ${x.weight!=null?Number(x.weight).toFixed(1)+'kg':'-'}　｜　タンパク質 ${x.protein!=null?x.protein+'g':'-'}</li>`).join(''):'<li class="empty">まだ記録がありません。</li>';
- const workouts=[...state.workouts].sort((a,b)=>b.date.localeCompare(a.date));
- document.getElementById('workoutHistoryList').innerHTML=workouts.length?workouts.map(x=>`<li><span class="history-type">${fmtDate(x.date)}　${x.type}メニュー</span><br><span class="small">完了 ${x.completed??x.total??'-'} / ${x.total??'-'}種目</span></li>`).join(''):'<li class="empty">まだ筋トレ記録がありません。</li>';
-}
-function drawChart(vals){
- const box=document.getElementById('chart');
- if(!vals.length){box.innerHTML='<div class="empty">体重を記録するとグラフが表示されます。</div>';return}
- const W=700,H=210,L=46,R=14,T=18,B=34;
- const raw=vals.map(x=>Number(x[1].weight));let min=Math.min(...raw),max=Math.max(...raw);
- if(min===max){min-=1;max+=1}else{min-=.5;max+=.5}
- const x=i=>L+(W-L-R)*(i/Math.max(1,vals.length-1)),y=v=T+(H-T-B)*(1-(v-min)/(max-min));
- let svg=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">`;
- for(let i=0;i<4;i++){const yy=T+(H-T-B)*(i/3),v=max-(max-min)*i/3;svg+=`<line x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}" stroke="#e4e9e7"/><text x="4" y="${yy+4}" font-size="11" fill="#6d7875">${v.toFixed(1)}</text>`}
- const pts=vals.map((z,i)=>`${x(i)},${y(Number(z[1].weight))}`).join(' ');
- svg+=`<polyline fill="none" stroke="#0f766e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" points="${pts}"/>`;
- vals.forEach((z,i)=>{svg+=`<circle cx="${x(i)}" cy="${y(Number(z[1].weight))}" r="4" fill="#0f766e"/>`;});
- const labels=[vals[0],vals.at(-1)];labels.forEach((z,idx)=>{const i=idx?vals.length-1:0;svg+=`<text x="${x(i)}" y="${H-8}" text-anchor="${idx?'end':'start'}" font-size="11" fill="#6d7875">${fmtDate(z[0]).slice(5)}</text>`});
- svg+='</svg>';box.innerHTML=svg;
-}
-function loadNote(){document.getElementById('noteInput').value=state.notes[today()]||''}
-function saveNote(){state.notes[today()]=document.getElementById('noteInput').value;persist();alert('メモを保存しました。')}
-function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='筋トレ管理バックアップ.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
-function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!x.daily||!x.workouts)throw Error();localStorage.setItem(KEY,JSON.stringify(x));location.reload()}catch{alert('バックアップ形式が正しくありません。')}};r.readAsText(f)}
+function setTimer(sec){stopTimer();stopAlarm();timerSeconds=sec;timerRemaining=sec;updateTimerDisplay()}
+function updateTimerDisplay(){const total=Math.max(0,Math.ceil(timerRemaining));const m=Math.floor(total/60),s=total%60;document.getElementById('timerDisplay').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');document.getElementById('timerState').textContent=timerRunning?'休憩中':'準備OK'}
+function prepareTimerAudio(){try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;if(!timerAudioCtx)timerAudioCtx=new C();if(timerAudioCtx.state==='suspended')timerAudioCtx.resume();return timerAudioCtx}catch(e){return null}}
+function playAlarmBeep(){const c=prepareTimerAudio();if(!c)return;try{const now=c.currentTime;[0,0.22,0.44].forEach((offset,i)=>{const o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.value=i===1?1047:880;g.gain.setValueAtTime(0.0001,now+offset);g.gain.exponentialRampToValueAtTime(0.18,now+offset+0.015);g.gain.exponentialRampToValueAtTime(0.0001,now+offset+0.18);o.connect(g);g.connect(c.destination);o.start(now+offset);o.stop(now+offset+0.2)})}catch(e){}}
+function toggleTimer(){if(timerRunning){pauseTimer();return}if(timerRemaining<=0){timerRemaining=timerSeconds}prepareTimerAudio();stopAlarm();timerRunning=true;timerEndAt=Date.now()+timerRemaining*1000;document.getElementById('timerStartBtn').textContent='一時停止';updateTimerDisplay();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{timerRemaining=Math.max(0,(timerEndAt-Date.now())/1000);updateTimerDisplay();if(timerRemaining<=0)finishTimer()},100)}
+function pauseTimer(){if(!timerRunning)return;timerRemaining=Math.max(0,(timerEndAt-Date.now())/1000);timerRunning=false;timerEndAt=null;if(timerId)clearInterval(timerId);timerId=null;document.getElementById('timerStartBtn').textContent='再開';updateTimerDisplay()}
+function stopTimer(){if(timerId)clearInterval(timerId);timerId=null;timerEndAt=null;timerRunning=false;document.getElementById('timerStartBtn').textContent='スタート';updateTimerDisplay()}
+function resetTimer(){stopTimer();stopAlarm();timerRemaining=timerSeconds;document.getElementById('timerStartBtn').textContent='スタート';updateTimerDisplay()}
+function finishTimer(){if(timerId)clearInterval(timerId);timerId=null;timerEndAt=null;timerRunning=false;timerRemaining=0;document.getElementById('timerStartBtn').textContent='もう一度スタート';document.getElementById('timerState').textContent='休憩終了！';try{if(navigator.vibrate)navigator.vibrate([250,120,250,120,500])}catch(e){}startAlarm()}
+function startAlarm(){alarmActive=true;document.getElementById('alarmModal').classList.add('open');playAlarmBeep();if(alarmInterval)clearInterval(alarmInterval);alarmInterval=setInterval(()=>{if(alarmActive)playAlarmBeep()},1400)}
+function stopAlarm(){alarmActive=false;if(alarmInterval)clearInterval(alarmInterval);alarmInterval=null;document.getElementById('alarmModal')?.classList.remove('open')}
+
+
+function renderHistory(){const entries=getWeightEntries();const range=document.getElementById('rangeSelect').value;const vals=range==='all'?entries:entries.slice(-Number(range));drawChart(vals);if(entries.length){const first=entries[0],last=entries.at(-1),diff=Number(last[1].weight)-Number(first[1].weight),pace=getWeightPace();document.getElementById('historySummary').textContent=`最新 ${Number(last[1].weight).toFixed(1)}kg（${fmtDate(last[0])}） / 初回から ${diff>=0?'+':''}${diff.toFixed(1)}kg / 増加ペース ${pace===null?'--':(pace>=0?'+':'')+pace.toFixed(2)+'kg/週'}`}else document.getElementById('historySummary').textContent='まだ体重記録がありません。';const wlist=[...entries].reverse();document.getElementById('weightHistoryList').innerHTML=wlist.length?wlist.map(([d,x])=>`<li><b>${fmtDate(d)}</b><br>体重 ${x.weight!=null?Number(x.weight).toFixed(1)+'kg':'-'}　｜　タンパク質 ${x.protein!=null?x.protein+'g':'未記録'}</li>`).join(''):'<li class="empty">まだ記録がありません。</li>';const workouts=[...state.workouts].sort((a,b)=>b.date.localeCompare(a.date));document.getElementById('workoutHistoryList').innerHTML=workouts.length?workouts.map(x=>`<li><span class="history-type">${fmtDate(x.date)}　${x.type}メニュー</span><br><span class="small">完了 ${x.completed??x.total??'-'} / ${x.total??'-'}種目${x.stats&&Object.keys(x.stats).length?' / 実績あり':''}</span></li>`).join(''):'<li class="empty">まだ筋トレ記録がありません。</li>'}
+function drawChart(vals){const box=document.getElementById('chart');if(!vals.length){box.innerHTML='<div class="empty">体重を記録するとグラフが表示されます。</div>';return}const W=700,H=240,L=46,R=14,T=18,B=42;const raw=vals.map(x=>Number(x[1].weight));let min=Math.min(...raw),max=Math.max(...raw,55);if(min===max){min-=1;max+=1}else{min-=.5;max+=.5}const x=i=>L+(W-L-R)*(i/Math.max(1,vals.length-1)),y=v=>T+(H-T-B)*(1-(v-min)/(max-min));let svg=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">`;for(let i=0;i<4;i++){const yy=T+(H-T-B)*(i/3),v=max-(max-min)*i/3;svg+=`<line x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}" stroke="#e4e9e7"/><text x="4" y="${yy+4}" font-size="11" fill="#6d7875">${v.toFixed(1)}</text>`}const goalY=y(55);if(goalY>=T&&goalY<=H-B)svg+=`<line x1="${L}" y1="${goalY}" x2="${W-R}" y2="${goalY}" stroke="#ea580c" stroke-width="2" stroke-dasharray="6 5"/><text x="${W-R-2}" y="${goalY-5}" text-anchor="end" font-size="11" fill="#ea580c">目標55kg</text>`;const pts=vals.map((z,i)=>`${x(i)},${y(Number(z[1].weight))}`).join(' ');svg+=`<polyline fill="none" stroke="#0f766e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" points="${pts}"/>`;vals.forEach((z,i)=>svg+=`<circle cx="${x(i)}" cy="${y(Number(z[1].weight))}" r="4" fill="#0f766e"/>`);const labels=[vals[0],vals.at(-1)];labels.forEach((z,idx)=>{const i=idx?vals.length-1:0;svg+=`<text x="${x(i)}" y="${H-10}" text-anchor="${idx?'end':'start'}" font-size="11" fill="#6d7875">${fmtDate(z[0]).slice(5)}</text>`});svg+='</svg>';box.innerHTML=svg}
+
+function loadNote(){const d=state.daily[today()]||{};document.getElementById('noteInput').value=state.notes[today()]?.text||state.notes[today()]||'';symptomDraft={...(state.notes[today()]?.symptoms||{})};renderSymptoms()}
+function toggleSymptom(k){symptomDraft[k]=!symptomDraft[k];renderSymptoms()}
+function renderSymptoms(){const map={diarrhea:'下痢・お腹の不調',appetite:'食欲低下',heartburn:'胸焼け',fatigue:'疲労感'};Object.keys(map).forEach(k=>{const b=document.getElementById('symptom'+k.charAt(0).toUpperCase()+k.slice(1));if(!b)return;b.classList.toggle('on',!!symptomDraft[k]);b.textContent=(symptomDraft[k]?'☑ ':'☐ ')+map[k]})}
+function saveNote(){state.notes[today()]={text:document.getElementById('noteInput').value,symptoms:{...symptomDraft}};persist();alert('今日のメモを保存しました。')}
+
+function openProtein(){const d=state.daily[selectedDate]||{};proteinDraft={...(d.proteinItems||{})};otherProtein=Number(d.proteinOther||0);renderProteinModal();document.getElementById('proteinModal').classList.add('open')}
+function closeProtein(){document.getElementById('proteinModal').classList.remove('open')}
+function renderProteinModal(){document.getElementById('foodList').innerHTML=foodPresets.map((f,i)=>`<div class="food-row"><div><div class="food-name">${f[0]}</div><div class="mini">${f[1]} ≈ ${f[2]}g</div></div><input id="food-${i}" type="number" min="0" step="0.5" inputmode="decimal" value="${proteinDraft[i]||''}" placeholder="個/回"><span class="mini">×</span></div>`).join('');document.getElementById('otherProtein').value=otherProtein||'';document.querySelectorAll('#foodList input').forEach(el=>el.addEventListener('input',updateProteinTotal));document.getElementById('otherProtein').addEventListener('input',()=>{otherProtein=Number(document.getElementById('otherProtein').value||0);updateProteinTotal()});updateProteinTotal()}
+function updateProteinTotal(){let total=Number(otherProtein)||0;foodPresets.forEach((f,i)=>{const v=Number(document.getElementById('food-'+i)?.value||proteinDraft[i]||0);total+=v*f[2]});document.getElementById('proteinTotal').textContent=total.toFixed(0);document.getElementById('proteinTargetMessage').textContent=total>=80&&total<=100?'80〜100gの目安に入っています。':total<80?`あと約 ${(80-total).toFixed(0)}gで下限80g。`:`目安100gを約 ${(total-100).toFixed(0)}g超えています。`;return total}
+function saveProteinEstimate(){foodPresets.forEach((f,i)=>{const v=Number(document.getElementById('food-'+i)?.value||0);if(v)proteinDraft[i]=v;else delete proteinDraft[i]});otherProtein=Number(document.getElementById('otherProtein').value||0);const total=foodPresets.reduce((s,f,i)=>s+(Number(proteinDraft[i]||0)*f[2]),0)+otherProtein;const d=state.daily[selectedDate]||{};state.daily[selectedDate]={...d,protein:Math.round(total),proteinItems:{...proteinDraft},proteinOther:otherProtein};persist();closeProtein();renderHome();renderHistory();alert(`${fmtDate(selectedDate)}のタンパク質を約 ${Math.round(total)}gとして保存しました。`)}
+function updateProteinPreview(d){const p=Number(d?.protein);document.getElementById('proteinPreview').textContent=Number.isFinite(p)?`概算 ${p}g（食材から計算）`:'まだ記録なし'}
+
+function exportData(share=false){const json=JSON.stringify(state,null,2),blob=new Blob([json],{type:'application/json'});const file=new File([blob],'筋トレ管理バックアップ.json',{type:'application/json'});if(share&&navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){navigator.share({title:'筋トレ管理バックアップ',files:[file]}).catch(()=>{});return}const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='筋トレ管理バックアップ.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!x.daily||!x.workouts)throw Error();state={...x,daily:x.daily||{},workouts:x.workouts||[],notes:x.notes||{}};persist();location.reload()}catch{alert('バックアップ形式が正しくありません。')}};r.readAsText(f)}
 function clearData(){if(confirm('全記録を削除します。よろしいですか？')){localStorage.removeItem(KEY);location.reload()}}
+// 既存データ互換：旧版のprotein値はそのまま表示。新しい食材記録を始めるまでは失われない。
 renderHome();renderWorkout();
 </script>
 </body>
